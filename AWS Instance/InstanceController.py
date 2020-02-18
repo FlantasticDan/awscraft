@@ -7,7 +7,6 @@ class MinecraftServer:
     def __init__(self):
         self.running = asyncio.Event()
         self.players = 0
-    
 
     async def runServer(self):
         self.process = await asyncio.create_subprocess_shell('java -jar server.jar', stdout=asyncio.subprocess.PIPE, stdin=asyncio.subprocess.PIPE)
@@ -30,7 +29,7 @@ class MinecraftServer:
         elif log.find('There are') != -1 and log.find('of a max') != -1 and not self.listRequest.is_set():
             self.players = [int(i) for i in log.split() if i.isdigit()][0]
             self.listRequest.set()
-    
+
     def sendCommand(self, cmd: str):
         command = bytes('{cmd}\n')
         self.process.stdin.write(command)
@@ -48,19 +47,19 @@ class WebsocketServer:
     def __init__(self, minecraftServer: MinecraftServer):
         self.clients = set()
         self.minecraft = minecraftServer
-    
+
     async def runServer(self):
         self.server = await websockets.server.serve(self.handler, 'localhost', 35351)
         await self.server.wait_closed()
         print('Server Closed')
-    
+
     async def onClientConnect(self, websocket):
         self.clients.add(websocket)
         await self.responseManager(websocket)
-    
+
     async def onClientDisconnect(self, websocket):
         self.clients.remove(websocket)
-    
+
     async def responseManager(self, websocket):
         try:
             async for message in websocket:
@@ -71,7 +70,7 @@ class WebsocketServer:
     async def handler(self, websocket, path):
         await self.onClientConnect(websocket)
         await self.minecraft.running.wait()
-        
+
 async def main(minecraft, websocket):
     await asyncio.gather(minecraft.runServer(),
                          websocket.runServer())
@@ -87,7 +86,4 @@ if __name__ == '__main__':
         loop.run_until_complete(loop.shutdown_asyncgens())
     finally:
         loop.close()
-
-
-
 
