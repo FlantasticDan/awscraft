@@ -158,6 +158,39 @@ class Ui_MainWindow(object):
         self.settingsButton.setIcon(icon)
         self.settingsButton.setIconSize(QSize(40, 40))
         self.settingsButton.setFlat(False)
+        self.shutdownButton = QPushButton(self.centralwidget)
+        self.shutdownButton.setObjectName(u"shutdownButton")
+        self.shutdownButton.setEnabled(True)
+        self.shutdownButton.setGeometry(QRect(180, 320, 550, 50))
+        self.shutdownButton.setFont(font1)
+        self.shutdownButton.setStyleSheet(u"QPushButton{\n"
+"	background: #ED0008;\n"
+"	border: 5px solid #ED0008;\n"
+"	border-radius: 0px;\n"
+"	color: white\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"	background: #822428;\n"
+"	border: 5px solid #822428;\n"
+"	border-radius: 0px;\n"
+"	color: white\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"	background: #ED0008;\n"
+"	border: 5px solid #ED0008;\n"
+"	border-radius: 0px;\n"
+"	color: white\n"
+"}\n"
+"\n"
+"QPushButton:disabled{\n"
+"	background: white;\n"
+"	border: 5px solid #D9D9D9;\n"
+"	border-radius: 0px;\n"
+"	color: #D9D9D9;\n"
+"}")
+        self.shutdownButton.setFlat(False)
         MainWindow.setCentralWidget(self.centralwidget)
         QWidget.setTabOrder(self.connectButton, self.launchButton)
 
@@ -166,16 +199,18 @@ class Ui_MainWindow(object):
         self.connectButton.setDefault(True)
         self.launchButton.setDefault(False)
         self.settingsButton.setDefault(False)
+        self.shutdownButton.setDefault(False)
 
 
         QMetaObject.connectSlotsByName(MainWindow)
     # setupUi
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"MainWindow", None))
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"AWScraft Launcher", None))
         self.logoLabel.setText("")
         self.connectButton.setText(QCoreApplication.translate("MainWindow", u"Connect to Server", None))
         self.launchButton.setText(QCoreApplication.translate("MainWindow", u"Launch Minecraft", None))
         self.settingsButton.setText("")
+        self.shutdownButton.setText(QCoreApplication.translate("MainWindow", u"Shutdown Server", None))
     # retranslateUi
 

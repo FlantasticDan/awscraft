@@ -29,7 +29,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>AWScraft Launcher</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow{
@@ -248,6 +248,68 @@ QPushButton:disabled{
       <width>40</width>
       <height>40</height>
      </size>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="shutdownButton">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>320</y>
+      <width>550</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Minecraftia</family>
+      <pointsize>18</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+      <kerning>true</kerning>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	background: #ED0008;
+	border: 5px solid #ED0008;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:hover{
+	background: #822428;
+	border: 5px solid #822428;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:pressed{
+	background: #ED0008;
+	border: 5px solid #ED0008;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:disabled{
+	background: white;
+	border: 5px solid #D9D9D9;
+	border-radius: 0px;
+	color: #D9D9D9;
+}</string>
+    </property>
+    <property name="text">
+     <string>Shutdown Server</string>
     </property>
     <property name="default">
      <bool>false</bool>
