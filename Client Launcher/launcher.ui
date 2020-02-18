@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>900</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>900</width>
+    <height>500</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>900</width>
+    <height>500</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <weight>50</weight>
+    <bold>false</bold>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow{
+	background-color: white
+}</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QLabel" name="logoLabel">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>120</y>
+      <width>550</width>
+      <height>90</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="resources/resources.qrc">:/images/awscraftTitle.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>false</bool>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="connectButton">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>250</y>
+      <width>550</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>20</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+      <kerning>true</kerning>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	background: #2FC15D;
+	border: 5px solid #2FC15D;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:hover{
+	background: #2C5E2E;
+	border: 5px solid #2C5E2E;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:pressed{
+	background: #2FC15D;
+	border: 5px solid #2FC15D;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:disabled{
+	background: white;
+	border: 5px solid #2FC15D;
+	border-radius: 0px;
+	color: #2FC15D;
+}</string>
+    </property>
+    <property name="text">
+     <string>Connect to Server</string>
+    </property>
+    <property name="default">
+     <bool>true</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="launchButton">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>320</y>
+      <width>550</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>20</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+      <kerning>true</kerning>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	background: #00C9ED;
+	border: 5px solid #00C9ED;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:hover{
+	background: #0C273D;
+	border: 5px solid #0C273D;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:pressed{
+	background: #00C9ED;
+	border: 5px solid #00C9ED;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:disabled{
+	background: white;
+	border: 5px solid #D9D9D9;
+	border-radius: 0px;
+	color: #D9D9D9;
+}</string>
+    </property>
+    <property name="text">
+     <string>Launch Minecraft</string>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="settingsButton">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Arial</family>
+      <pointsize>20</pointsize>
+      <weight>75</weight>
+      <bold>true</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+      <kerning>true</kerning>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton{
+	background: #00C9ED;
+	border: 5px solid #00C9ED;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:hover{
+	background: #0C273D;
+	border: 5px solid #0C273D;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:pressed{
+	background: #00C9ED;
+	border: 5px solid #00C9ED;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:disabled{
+	background: white;
+	border: 5px solid #D9D9D9;
+	border-radius: 0px;
+	color: #D9D9D9;
+}</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normalon>:/images/settingsIcon.png</normalon>
+     </iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>40</width>
+      <height>40</height>
+     </size>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <tabstops>
+  <tabstop>connectButton</tabstop>
+  <tabstop>launchButton</tabstop>
+ </tabstops>
+ <resources>
+  <include location="resources/resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>
