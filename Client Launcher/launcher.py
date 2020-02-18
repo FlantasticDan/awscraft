@@ -44,8 +44,8 @@ class Ui_MainWindow(object):
         self.connectButton.setEnabled(True)
         self.connectButton.setGeometry(QRect(180, 250, 550, 50))
         font1 = QFont()
-        font1.setFamily(u"Arial")
-        font1.setPointSize(20)
+        font1.setFamily(u"Minecraftia")
+        font1.setPointSize(18)
         font1.setBold(True)
         font1.setUnderline(False)
         font1.setWeight(75)
@@ -117,7 +117,15 @@ class Ui_MainWindow(object):
         self.settingsButton.setObjectName(u"settingsButton")
         self.settingsButton.setEnabled(True)
         self.settingsButton.setGeometry(QRect(10, 10, 50, 50))
-        self.settingsButton.setFont(font1)
+        font2 = QFont()
+        font2.setFamily(u"Arial")
+        font2.setPointSize(20)
+        font2.setBold(True)
+        font2.setUnderline(False)
+        font2.setWeight(75)
+        font2.setStrikeOut(False)
+        font2.setKerning(True)
+        self.settingsButton.setFont(font2)
         self.settingsButton.setStyleSheet(u"QPushButton{\n"
 "	background: #00C9ED;\n"
 "	border: 5px solid #00C9ED;\n"

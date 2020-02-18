@@ -73,8 +73,8 @@
     </property>
     <property name="font">
      <font>
-      <family>Arial</family>
-      <pointsize>20</pointsize>
+      <family>Minecraftia</family>
+      <pointsize>18</pointsize>
       <weight>75</weight>
       <bold>true</bold>
       <underline>false</underline>
@@ -135,8 +135,8 @@ QPushButton:disabled{
     </property>
     <property name="font">
      <font>
-      <family>Arial</family>
-      <pointsize>20</pointsize>
+      <family>Minecraftia</family>
+      <pointsize>18</pointsize>
       <weight>75</weight>
       <bold>true</bold>
       <underline>false</underline>
