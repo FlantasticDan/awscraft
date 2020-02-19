@@ -159,7 +159,7 @@ class Ui_settingsDialog(object):
         self.dataDetectButton.setFlat(False)
         self.dataBrowseButton = QPushButton(settingsDialog)
         self.dataBrowseButton.setObjectName(u"dataBrowseButton")
-        self.dataBrowseButton.setEnabled(False)
+        self.dataBrowseButton.setEnabled(True)
         self.dataBrowseButton.setGeometry(QRect(165, 240, 146, 31))
         self.dataBrowseButton.setFont(font2)
         self.dataBrowseButton.setStyleSheet(u"QPushButton{\n"
@@ -192,7 +192,7 @@ class Ui_settingsDialog(object):
         self.dataBrowseButton.setFlat(False)
         self.launcherBrowseButton = QPushButton(settingsDialog)
         self.launcherBrowseButton.setObjectName(u"launcherBrowseButton")
-        self.launcherBrowseButton.setEnabled(False)
+        self.launcherBrowseButton.setEnabled(True)
         self.launcherBrowseButton.setGeometry(QRect(165, 360, 146, 31))
         self.launcherBrowseButton.setFont(font2)
         self.launcherBrowseButton.setStyleSheet(u"QPushButton{\n"

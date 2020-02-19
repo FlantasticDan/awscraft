@@ -60,6 +60,7 @@ class ConfigurationSettings:
         minecraft_data = os.path.join(appdata, '.minecraft')
 
         if os.path.isdir(minecraft_data):
+            self.data_directory = minecraft_data
             return minecraft_data
 
         return False
@@ -70,6 +71,7 @@ class ConfigurationSettings:
         minecraft_exe = os.path.join(program_files, 'Minecraft Launcher', 'MinecraftLauncher.exe')
 
         if os.path.isfile(minecraft_exe):
+            self.launcher = minecraft_exe
             return minecraft_exe
 
         return False

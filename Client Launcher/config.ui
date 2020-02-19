@@ -324,7 +324,7 @@ QPushButton:disabled{
   </widget>
   <widget class="QPushButton" name="dataBrowseButton">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="geometry">
     <rect>
@@ -386,7 +386,7 @@ QPushButton:disabled{
   </widget>
   <widget class="QPushButton" name="launcherBrowseButton">
    <property name="enabled">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="geometry">
     <rect>
