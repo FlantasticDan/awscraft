@@ -2,6 +2,7 @@
 
 import os
 import nbt.nbt as nbt
+import json
 
 class ConfigurationSettings:
     '''Stores and detects User Configuration Data'''
@@ -29,6 +30,17 @@ class ConfigurationSettings:
             return minecraft_exe
 
         return False
+
+    def get_display_name(self):
+        '''Returns the display name of the currently selected Minecraft User.'''
+        profile_file = os.path.join(self.data_directory, 'launcher_profiles.json')
+        if not os.path.isfile(profile_file):
+            return False
+
+        with open(profile_file, 'r') as profile:
+            data = json.load(profile)
+
+        return data['authenticationDatabase'][data['selectedUser']['account']]['profiles'][data['selectedUser']['profile']]['displayName']
 
     def update_server_address(self, ip, name='AWScraft'):
         '''
