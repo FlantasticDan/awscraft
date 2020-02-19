@@ -1,7 +1,9 @@
 import sys
-from PySide2.QtWidgets import QApplication, QMainWindow
+from PySide2.QtWidgets import QApplication, QMainWindow, QDialog
 from PySide2.QtGui import QFontDatabase
+from PySide2.QtCore import Qt
 from launcher import Ui_MainWindow
+from config import Ui_settingsDialog
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -14,6 +16,8 @@ class MainWindow(QMainWindow):
         self.ui.shutdownButton.hide()
 
         self.connect_buttons()
+
+        self.settings = ConfigDialog(self)
 
     def fonts(self):
         '''Add fonts to the application workspace.'''
@@ -36,7 +40,15 @@ class MainWindow(QMainWindow):
         pass
 
     def settings_button_handler(self):
-        pass
+        self.settings.exec_()
+
+class ConfigDialog(QDialog):
+    def __init__(self, parent=None):
+        super(ConfigDialog, self).__init__(parent, Qt.WindowSystemMenuHint | Qt.WindowCloseButtonHint)
+
+        self.dialog = Ui_settingsDialog()
+        self.dialog.setupUi(self)
+
 
 
 if __name__ == "__main__":

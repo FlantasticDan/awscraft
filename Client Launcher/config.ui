@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>settingsDialog</class>
  <widget class="QDialog" name="settingsDialog">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
   <property name="enabled">
    <bool>true</bool>
   </property>
@@ -10,8 +13,11 @@
     <x>0</x>
     <y>0</y>
     <width>320</width>
-    <height>480</height>
+    <height>510</height>
    </rect>
+  </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::ActionsContextMenu</enum>
   </property>
   <property name="windowTitle">
    <string>AWScraft Configuration</string>
@@ -21,11 +27,19 @@
     <normalon>:/images/settingsIcon.png</normalon>
    </iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QDialog{
+	background-color: white
+}</string>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
   <widget class="QLineEdit" name="serverInput">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>90</y>
+     <y>80</y>
      <width>301</width>
      <height>31</height>
     </rect>
@@ -42,11 +56,22 @@
    <property name="acceptDrops">
     <bool>false</bool>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit{
+	background-color: white;
+	border: 2px solid #D9D9D9
+}
+
+QLineEdit:focus{
+	background-color: white;
+	border: 2px solid black
+}</string>
+   </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="titleLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
@@ -69,10 +94,13 @@
    </property>
   </widget>
   <widget class="QLabel" name="serverLabel">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>63</y>
+     <y>53</y>
      <width>301</width>
      <height>20</height>
     </rect>
@@ -87,15 +115,23 @@
     <string>URL or IP Address the AWScraft instance is controlled by.
 This is not the address you would enter to connect directly within Minecraft.</string>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel:disabled{
+	color: #ED0008;
+}</string>
+   </property>
    <property name="text">
     <string>Server Host Address</string>
    </property>
   </widget>
   <widget class="QLabel" name="userLabel">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>143</y>
+     <y>133</y>
      <width>301</width>
      <height>20</height>
     </rect>
@@ -110,6 +146,11 @@ This is not the address you would enter to connect directly within Minecraft.</s
     <string>Unique ID issued to you by your server administrator.
 It is not necessarily your Minecraft username.</string>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel:disabled{
+	color: #ED0008;
+}</string>
+   </property>
    <property name="text">
     <string>User ID</string>
    </property>
@@ -118,7 +159,7 @@ It is not necessarily your Minecraft username.</string>
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>170</y>
+     <y>160</y>
      <width>301</width>
      <height>31</height>
     </rect>
@@ -135,15 +176,26 @@ It is not necessarily your Minecraft username.</string>
    <property name="acceptDrops">
     <bool>false</bool>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit{
+	background-color: white;
+	border: 2px solid #D9D9D9
+}
+
+QLineEdit:focus{
+	background-color: white;
+	border: 2px solid black
+}</string>
+   </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QLabel" name="serverLabel_2">
+  <widget class="QLabel" name="dataLabel">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>220</y>
+     <y>210</y>
      <width>301</width>
      <height>20</height>
     </rect>
@@ -154,18 +206,26 @@ It is not necessarily your Minecraft username.</string>
      <pointsize>12</pointsize>
     </font>
    </property>
+   <property name="toolTip">
+    <string>The '.minecraft' directory, typically found in a User's AppData folder.</string>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel:disabled{
+	color: #ED0008;
+}</string>
+   </property>
    <property name="text">
     <string>Minecraft Data Directory</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="serverInput_2">
+  <widget class="QLineEdit" name="dataInput">
    <property name="enabled">
     <bool>true</bool>
    </property>
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>250</y>
+     <y>280</y>
      <width>301</width>
      <height>31</height>
     </rect>
@@ -182,11 +242,414 @@ It is not necessarily your Minecraft username.</string>
    <property name="acceptDrops">
     <bool>false</bool>
    </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit{
+	background-color: white;
+	border: 2px solid #D9D9D9
+}
+
+QLineEdit:focus{
+	background-color: white;
+	border: 2px solid black
+}</string>
+   </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
    </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="dataDetectButton">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>240</y>
+     <width>146</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Minecraftia</family>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+     <underline>false</underline>
+     <strikeout>false</strikeout>
+     <kerning>true</kerning>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	background: #2FC15D;
+	border: 5px solid #2FC15D;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:hover{
+	background: #2C5E2E;
+	border: 5px solid #2C5E2E;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:pressed{
+	background: #2FC15D;
+	border: 5px solid #2FC15D;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:disabled{
+	background: white;
+	border: 5px solid #2FC15D;
+	border-radius: 0px;
+	color: #2FC15D;
+}</string>
+   </property>
+   <property name="text">
+    <string>Auto Detect</string>
+   </property>
+   <property name="default">
+    <bool>true</bool>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="dataBrowseButton">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>165</x>
+     <y>240</y>
+     <width>146</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Minecraftia</family>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+     <underline>false</underline>
+     <strikeout>false</strikeout>
+     <kerning>true</kerning>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	background: #00C9ED;
+	border: 5px solid #00C9ED;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:hover{
+	background: #0C273D;
+	border: 5px solid #0C273D;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:pressed{
+	background: #00C9ED;
+	border: 5px solid #00C9ED;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:disabled{
+	background: white;
+	border: 5px solid #D9D9D9;
+	border-radius: 0px;
+	color: #D9D9D9;
+}</string>
+   </property>
+   <property name="text">
+    <string>Browse</string>
+   </property>
+   <property name="default">
+    <bool>true</bool>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="launcherBrowseButton">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>165</x>
+     <y>360</y>
+     <width>146</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Minecraftia</family>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+     <underline>false</underline>
+     <strikeout>false</strikeout>
+     <kerning>true</kerning>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	background: #00C9ED;
+	border: 5px solid #00C9ED;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:hover{
+	background: #0C273D;
+	border: 5px solid #0C273D;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:pressed{
+	background: #00C9ED;
+	border: 5px solid #00C9ED;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:disabled{
+	background: white;
+	border: 5px solid #D9D9D9;
+	border-radius: 0px;
+	color: #D9D9D9;
+}</string>
+   </property>
+   <property name="text">
+    <string>Browse</string>
+   </property>
+   <property name="default">
+    <bool>true</bool>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="launcherDetectButton">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>360</y>
+     <width>146</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Minecraftia</family>
+     <pointsize>12</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+     <underline>false</underline>
+     <strikeout>false</strikeout>
+     <kerning>true</kerning>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	background: #2FC15D;
+	border: 5px solid #2FC15D;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:hover{
+	background: #2C5E2E;
+	border: 5px solid #2C5E2E;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:pressed{
+	background: #2FC15D;
+	border: 5px solid #2FC15D;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:disabled{
+	background: white;
+	border: 5px solid #2FC15D;
+	border-radius: 0px;
+	color: #2FC15D;
+}</string>
+   </property>
+   <property name="text">
+    <string>Auto Detect</string>
+   </property>
+   <property name="default">
+    <bool>true</bool>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
+   </property>
+  </widget>
+  <widget class="QLabel" name="launcherLabel">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>330</y>
+     <width>301</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Minecraftia</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="toolTip">
+    <string>The '.minecraft' directory, typically found in a User's AppData folder.</string>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLabel:disabled{
+	color: #ED0008;
+}</string>
+   </property>
+   <property name="text">
+    <string>Minecraft Launcher</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="launcherInput">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>400</y>
+     <width>301</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Minecraftia</family>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="cursor">
+    <cursorShape>IBeamCursor</cursorShape>
+   </property>
+   <property name="acceptDrops">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QLineEdit{
+	background-color: white;
+	border: 2px solid #D9D9D9
+}
+
+QLineEdit:focus{
+	background-color: white;
+	border: 2px solid black
+}</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+   <property name="readOnly">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="saveButton">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>450</y>
+     <width>301</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Minecraftia</family>
+     <pointsize>18</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+     <underline>false</underline>
+     <strikeout>false</strikeout>
+     <kerning>true</kerning>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{
+	background: #2FC15D;
+	border: 5px solid #2FC15D;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:hover{
+	background: #2C5E2E;
+	border: 5px solid #2C5E2E;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:pressed{
+	background: #2FC15D;
+	border: 5px solid #2FC15D;
+	border-radius: 0px;
+	color: white
+}
+
+QPushButton:disabled{
+	background: white;
+	border: 5px solid #2FC15D;
+	border-radius: 0px;
+	color: #2FC15D;
+}</string>
+   </property>
+   <property name="text">
+    <string>Save</string>
+   </property>
+   <property name="default">
+    <bool>true</bool>
+   </property>
+   <property name="flat">
+    <bool>false</bool>
+   </property>
   </widget>
  </widget>
+ <tabstops>
+  <tabstop>serverInput</tabstop>
+  <tabstop>userInput</tabstop>
+  <tabstop>dataDetectButton</tabstop>
+  <tabstop>dataBrowseButton</tabstop>
+  <tabstop>launcherDetectButton</tabstop>
+  <tabstop>launcherBrowseButton</tabstop>
+  <tabstop>launcherInput</tabstop>
+  <tabstop>dataInput</tabstop>
+ </tabstops>
  <resources>
   <include location="resources/resources.qrc"/>
  </resources>
