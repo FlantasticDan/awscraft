@@ -4,6 +4,7 @@ from PySide2.QtGui import QFontDatabase
 from PySide2.QtCore import Qt
 from launcher import Ui_MainWindow
 from config import Ui_settingsDialog
+from settings import ConfigurationSettings
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -49,12 +50,18 @@ class ConfigDialog(QDialog):
         self.dialog = Ui_settingsDialog()
         self.dialog.setupUi(self)
 
+        self.config = ConfigurationSettings()
+
 
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
 
     window = MainWindow()
+
+    if window.settings.config.start():
+        window.ui.settingsButton.click()
+
     window.show()
 
     sys.exit(app.exec_())

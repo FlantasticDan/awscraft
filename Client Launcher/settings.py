@@ -1,15 +1,58 @@
 '''Handles Settings and Configuration Data for AWScraft.'''
 
 import os
-import nbt.nbt as nbt
 import json
+import nbt.nbt as nbt
 
 class ConfigurationSettings:
     '''Stores and detects User Configuration Data'''
 
     def __init__(self):
-        self.data_directory = self.find_minecraft_data()
-        self.launcher = self.find_minecraft_launcher()
+        self.awscraft_dir = None
+        self.data_directory = None
+        self.launcher = None
+        self.user_id = None
+        self.host = None
+
+    def start(self):
+        '''Startup Config Operations'''
+        appdata = os.getenv('APPDATA')
+        self.awscraft_dir = os.path.join(appdata, 'AWScraft')
+
+        if os.path.isdir(self.awscraft_dir):
+            settings = os.path.join(self.awscraft_dir, 'user_settings.json')
+            if not os.path.isfile(settings):
+                return True
+
+            with open(settings, 'r') as user_data:
+                user_settings = json.load(user_data)
+
+            self.data_directory = user_settings['data_directory']
+            self.launcher = user_settings['launcher']
+            self.user_id = user_settings['user_id']
+            self.host = user_settings['host']
+
+            return False
+        else:
+            os.mkdir(self.awscraft_dir)
+            return True
+
+    def save(self):
+        '''Save settings to user data.'''
+        user_settings = {
+            'data_directory': self.data_directory,
+            'launcher': self.launcher,
+            'user_id': self.user_id,
+            'host': self.host
+        }
+
+        export = os.path.join(self.awscraft_dir, 'user_settings.json')
+
+        if os.path.isfile(export):
+            os.remove(export)
+
+        with open(export, 'w') as settings:
+            json.dump(user_settings, settings)
 
     def find_minecraft_data(self):
         '''Find the .minecraft user data folder.'''
@@ -70,5 +113,5 @@ class ConfigurationSettings:
         os.remove(server_file)
         with open(server_file, 'wb') as new_binary:
             server.write_file(buffer=new_binary)
-
-ConfigurationSettings()
+        
+        return True
