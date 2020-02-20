@@ -123,6 +123,7 @@ class ConfigDialog(QDialog):
 
 
 if __name__ == "__main__":
+    QApplication.setAttribute(Qt.ApplicationAttribute.AA_EnableHighDpiScaling, True)
     app = QApplication(sys.argv)
 
     window = MainWindow()
