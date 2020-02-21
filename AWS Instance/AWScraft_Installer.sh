@@ -21,3 +21,21 @@ pip3 install websockets requests
 
 echo "Dependencies Installed, Fetching AWScraft Resources"
 mkdir awscraft
+sudo chmod 777 awscraft
+wget https://raw.githubusercontent.com/FlantasticDan/awscraft/master/AWS%20Instance/InstanceController.py -P ./awscraft/
+wget https://raw.githubusercontent.com/FlantasticDan/awscraft/master/AWS%20Instance/data_manager.py -P ./awscraft/
+wget https://raw.githubusercontent.com/FlantasticDan/awscraft/master/AWS%20Instance/first_run_setup.py -P ./awscraft/
+
+echo "Resourced Fetched, Starting First Run"
+cd awscraft
+python3 first_run_setup.py
+rm first_run_setup.py
+
+echo "   ###    ##      ##  ######   ######  ########     ###    ######## ######## "
+echo "  ## ##   ##  ##  ## ##    ## ##    ## ##     ##   ## ##   ##          ##    "
+echo " ##   ##  ##  ##  ## ##       ##       ##     ##  ##   ##  ##          ##    "
+echo "##     ## ##  ##  ##  ######  ##       ########  ##     ## ######      ##    "
+echo "######### ##  ##  ##       ## ##       ##   ##   ######### ##          ##    "
+echo "##     ## ##  ##  ## ##    ## ##    ## ##    ##  ##     ## ##          ##    "
+echo "##     ##  ###  ###   ######   ######  ##     ## ##     ## ##          ##    "
+echo "                      Instance Installation Complete                         "
