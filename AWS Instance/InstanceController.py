@@ -133,13 +133,16 @@ class ClientHandler:
         self.display_name = display_name
         self.websocket = websocket
 
-        player = colored(display_name, 'magenta', None, ['bold'])
-        print(f'{player} has connected to the Websocket Server')
+        self.pplayer = colored(display_name, 'magenta', None, ['bold'])
+        print(f'{self.pplayer} has connected to the Websocket Server')
 
     async def responseManager(self):
         try:
             async for message in self.websocket:
                 pass
+        except websockets.exceptions.ConnectionClosed:
+            disconnected = colored('disconnected', 'red', None, ['bold'])
+            print(f'{self.pplayer} has {disconnected} from the Websocket Server')
         finally:
             pass
 
