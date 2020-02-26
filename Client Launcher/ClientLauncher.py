@@ -1,11 +1,14 @@
 import sys
 import os
+import asyncio
+import threading
 from PySide2.QtWidgets import QApplication, QMainWindow, QDialog, QFileDialog
 from PySide2.QtGui import QFontDatabase, QIcon
 from PySide2.QtCore import Qt, QSize
 from launcher import Ui_MainWindow
 from config import Ui_settingsDialog
 from settings import ConfigurationSettings
+import server_connection as server
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -33,8 +36,15 @@ class MainWindow(QMainWindow):
         self.ui.settingsButton.clicked.connect(self.settings_button_handler)
 
     def connect_button_handler(self):
-        pass
+        ip = server.connect_to_server()
+        self.server = server.WebsocketHandler(ip, self.settings.config.get_display_name(), self)
 
+        t = threading.Thread(target=self.thread_runner)
+        t.start()
+
+    def thread_runner(self):
+        asyncio.run(self.server.connect())
+    
     def launch_button_handler(self):
         pass
 
