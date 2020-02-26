@@ -42,15 +42,19 @@ class MinecraftServer:
             # Updating the Player Count
             self.players = [int(i) for i in log.split() if i.isdigit()][0]
             self.listRequest.set()
-        elif log.find(' joined the game') != 1:
+        elif log.find(' joined the game') != -1:
             # Player Connection
             newPlayer = log.split(' joined the game')[0]
-            self.websocket.confirm_player(newPlayer)
+            if self.websocket.confirm_player(newPlayer):
+                self.kick_player(newPlayer, '[Unexpected Player] Connection via AWScraft Launcher Required!')
+        elif log.find(' left the game') != -1:
+            oldPlayer = log.split(' left the game')[0]
+            self.player_disconnected(oldPlayer)
 
     def sendCommand(self, cmd: str):
-        command = bytes('{cmd}\n')
+        command = bytes(f'{cmd}\n', 'utf-8')
         self.process.stdin.write(command)
-        self.process.stdin.flush()
+        # self.process.stdin.flush()
 
     async def updatePlayers(self):
         self.listRequest = asyncio.Event()
@@ -63,6 +67,16 @@ class MinecraftServer:
         cmd = f'kick {player} {reason}'
         self.kickq.append(player)
         self.sendCommand(cmd)
+    
+    def player_disconnected(self, player):
+        '''Log disconnected players.'''
+        print_player = colored(player, 'magenta', None, attrs=['bold'])
+        if player in self.kickq:
+            kicked = colored('kicked', 'red', None, attrs=['bold'])
+            print(f'{print_player} has been {kicked} from the Minecraft Server.')
+            self.kickq.remove(player)
+        else:
+            print(f'{print_player} has disconnected from the Minecraft Server.')
 
 class WebsocketServer:
     '''Websocket Server Manager'''
@@ -103,7 +117,7 @@ class WebsocketServer:
 
     async def handler(self, websocket, path):
         await self.onClientConnect(websocket)
-    
+
     def confirm_player(self, player):
         '''Check that given <player> has connected via the websocket.'''
         if player in self.clients.keys():
@@ -111,7 +125,7 @@ class WebsocketServer:
             print(f'{print_player} has been authenticated and connected to the Minecraft Server.')
             return
         else:
-            pass
+            return True
 
 
 class ClientHandler:
@@ -127,7 +141,7 @@ class ClientHandler:
             async for message in self.websocket:
                 pass
         finally:
-            pass    
+            pass
 
 async def main(minecraft, websocket):
     await asyncio.gather(minecraft.runServer(),

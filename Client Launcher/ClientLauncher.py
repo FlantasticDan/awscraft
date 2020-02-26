@@ -36,7 +36,9 @@ class MainWindow(QMainWindow):
         self.ui.settingsButton.clicked.connect(self.settings_button_handler)
 
     def connect_button_handler(self):
+        self.update_connect_button(1)
         ip = server.connect_to_server()
+        self.update_connect_button(2)
         self.server = server.WebsocketHandler(ip, self.settings.config.get_display_name(), self)
 
         t = threading.Thread(target=self.thread_runner)
@@ -44,7 +46,21 @@ class MainWindow(QMainWindow):
 
     def thread_runner(self):
         asyncio.run(self.server.connect())
-    
+
+    def update_connect_button(self, stage: int, ip=''):
+        '''Updates the Connect Button with Relevant Status.'''
+        stages = [
+            'Connect to Server',
+            '[1/2] Requesting Server',
+            '[2/2] Waiting for Server',
+            f'Connected to {ip}'
+        ]
+        self.ui.connectButton.setText(stages[stage])
+        if stage > 0:
+            self.ui.connectButton.setEnabled(False)
+        else:
+            self.ui.connectButton.setEnabled(True)
+
     def launch_button_handler(self):
         pass
 
@@ -64,7 +80,7 @@ class ConfigDialog(QDialog):
         self.connect_buttons()
 
         self.config = ConfigurationSettings()
-    
+
     def connect_buttons(self):
         '''Connect button signals to handler functions.'''
         self.dialog.saveButton.clicked.connect(self.save_button_handler)
@@ -82,7 +98,7 @@ class ConfigDialog(QDialog):
 
         self.config.save()
         self.close()
-    
+
     def data_detect_button_handler(self):
         if self.config.find_minecraft_data():
             self.dialog.dataDetectButton.setEnabled(False)
@@ -92,17 +108,17 @@ class ConfigDialog(QDialog):
         else:
             self.dialog.dataDetectButton.setEnabled(False)
             self.dialog.dataDetectButton.setText('Failed')
-    
+
     def data_browse_button_handler(self):
         path = QFileDialog.getExistingDirectory(self, 'Browse for .minecraft')
         self.dialog.dataInput.setText(os.path.abspath(path))
         self.auto_detect_button_reset(self.dialog.dataDetectButton)
-    
+
     def launcher_browse_button_handler(self):
         path = QFileDialog.getOpenFileName(self, 'Browse for MinecraftLauncher.exe', '', 'Executables (*.exe)')
         self.dialog.launcherInput.setText(os.path.abspath(path[0]))
         self.auto_detect_button_reset(self.dialog.launcherDetectButton)
-    
+
     def launcher_detect_button_handler(self):
         if self.config.find_minecraft_launcher():
             self.dialog.launcherDetectButton.setEnabled(False)
