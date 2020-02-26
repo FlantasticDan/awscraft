@@ -2,6 +2,7 @@ import sys
 import os
 import asyncio
 import threading
+import subprocess
 from PySide2.QtWidgets import QApplication, QMainWindow, QDialog, QFileDialog
 from PySide2.QtGui import QFontDatabase, QIcon
 from PySide2.QtCore import Qt, QSize
@@ -58,11 +59,14 @@ class MainWindow(QMainWindow):
         self.ui.connectButton.setText(stages[stage])
         if stage > 0:
             self.ui.connectButton.setEnabled(False)
+            if stage == 3:
+                self.settings.config.update_server_address(ip)
+                self.ui.launchButton.setEnabled(True)
         else:
             self.ui.connectButton.setEnabled(True)
 
     def launch_button_handler(self):
-        pass
+        subprocess.Popen(self.settings.config.launcher)
 
     def shutdown_button_handler(self):
         pass
